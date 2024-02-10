@@ -1,0 +1,25 @@
+From c8b9b5ea1e5d5ab624a10f4c874089c94ca97601 Mon Sep 17 00:00:00 2001
+From: Chinonso Ngwu <ngwucs@gmail.com>
+Date: Sat, 10 Feb 2024 22:04:52 +0100
+Subject: [PATCH] Modify binutils.inc
+
+---
+ meta/recipes-devtools/binutils/binutils.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta/recipes-devtools/binutils/binutils.inc b/meta/recipes-devtools/binutils/binutils.inc
+index 789c8bec21..f8f4e04cab 100644
+--- a/meta/recipes-devtools/binutils/binutils.inc
++++ b/meta/recipes-devtools/binutils/binutils.inc
+@@ -92,7 +92,7 @@ EXTRA_TARGETS:class-native = ""
+ LDGOLD:class-native = ""
+ LDGOLD:class-crosssdk = ""
+ LDGOLD:libc-glibc:mipsarch = ""
+-LDGOLD ?= "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '--enable-gold=default --enable-threads', '--enable-gold --enable-ld=default --enable-threads', d)}"
++LDGOLD ?= "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '--enable-gold=False --enable-threads', '--enable-gold --enable-ld=default --enable-threads', d)}"
+ 
+ 
+ # This is necessary due to a bug in the binutils Makefiles
+-- 
+2.25.1
+
