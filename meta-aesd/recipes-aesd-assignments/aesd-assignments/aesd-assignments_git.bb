@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-MrSCAN.git;protocol=ssh;branch=master"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "ff81f9b74f3ebc5ff6d0afca90c2bc9e017f67fc"
+SRCREV = "58d480f146e5fd3cce8c949a6611a6b1b0289f2c"
 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
 
@@ -18,6 +18,9 @@ FILES:${PN} += "${bindir}/aesdsocket"
 FILES:${PN} += "${sysconfdir}/init.d/aesdsocket-start-stop.sh"
 
 TARGET_LDFLAGS += "-pthread -lrt"
+
+RDEPENDS:${PN} += "libgcc"
+
 
 
 do_configure () {
