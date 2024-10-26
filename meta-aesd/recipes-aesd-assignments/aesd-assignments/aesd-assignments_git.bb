@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-MrSCAN.git;protocol=ssh;branch=master"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "c3dd1f47478cace8a759eb61c6d596626ef421ff"
+SRCREV = "caec67a81e9fe3241285430120c0175152713c6c"
 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
 
@@ -18,6 +18,7 @@ FILES:${PN} += "${bindir}/aesdsocket"
 FILES:${PN} += "${sysconfdir}/init.d/aesdsocket-start-stop.sh"
 
 TARGET_LDFLAGS += "-pthread -lrt"
+TARGET_CFLAGS += "-Wall -Wextra -DUSE_AESD_CHAR_DEVICE=1"
 
 RDEPENDS:${PN} += "libgcc"
 
@@ -45,5 +46,5 @@ do_install () {
     install -m 0755 ${S}/aesdsocket ${D}${bindir}/
 
 	install -d ${D}${sysconfdir}/init.d
-    install -m 0755 ${S}/aesdsocket-start-stop.sh ${D}${sysconfdir}/init.d/
+	install -m 0755 ${S}/aesdsocket-start-stop.sh ${D}${sysconfdir}/init.d/
 }
